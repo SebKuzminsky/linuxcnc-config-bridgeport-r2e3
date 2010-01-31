@@ -210,6 +210,22 @@ net emcmot.02.pos-cmd axis.2.motor-pos-cmd => pid.2.command
 net motor.02.command  pid.2.output  =>  hm2_[HOSTMOT2](BOARD).0.pwmgen.02.value
 
 
+
+
+#
+# spindle control
+#
+
+# connects to wire #50 in the bp diagram
+net spindle-on <= motion.spindle-on
+net spindle-on => hm2_[HOSTMOT2](BOARD).0.gpio.066.out
+
+setp hm2_[HOSTMOT2](BOARD).0.gpio.066.is_output 1
+setp hm2_[HOSTMOT2](BOARD).0.gpio.066.invert_output 1
+
+
+
+
 # ##################################################
 # non-working toolchanger stuff
 # ##################################################
