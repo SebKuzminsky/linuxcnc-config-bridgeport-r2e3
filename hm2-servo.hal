@@ -306,3 +306,22 @@ setp hm2_[HOSTMOT2](BOARD).0.gpio.065.invert_output 1
 
 net emcmot.00.enable => hm2_[HOSTMOT2](BOARD).0.gpio.065.out
 
+
+
+
+# 
+# spindle motor speed control
+#
+
+loadusr -W gs2_vfd --bits 8 --parity even --stop 1 --rate 38400 --target 1
+
+setp gs2_vfd.speed-command 1700
+
+net spindle-forward  motion.spindle-forward gs2_vfd.spindle-fwd
+net spindle-reverse  motion.spindle-reverse gs2_vfd.spindle-rev
+net spindle-on       motion.spindle-on      gs2_vfd.spindle-on
+
+net spindle-at-speed gs2_vfd.at-speed       motion.spindle-at-speed
+
+#net spindle-speed-fb gs2_vfd.motor-RPM motion.spindle-speed-in
+
