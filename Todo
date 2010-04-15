@@ -1,9 +1,5 @@
 
-do i need is_opendrain for the gpio outputs?
-
-
-hook up the VFD in HAL
-
-
 hook up coolant pump
+
+<cradek> if it thumps when it gets index, also hook up pid.N.index-enable
 
