@@ -1,0 +1,60 @@
+
+#
+# Logitech Cordless RumblePad 2
+#
+
+
+loadusr -W hal_input -KRAL RumblePad
+
+loadrt  sum2 count=3
+
+#loadrt  and2 count=3
+#loadrt  conv_s32_float count=3
+#loadrt  mux2 count=2
+#loadrt  or2 count=1
+#loadrt  scale count=4
+#loadrt  toggle count=1
+#loadrt  wcomp count=3
+
+
+#-- central buttons activate manual mode and restart the program
+#net     mode-manual     input.0.btn-base3       halui.mode.manual
+#net     pgm-resume      input.0.btn-base4       halui.program.resume
+
+
+# lower left-hand button actives estop
+# input.0.btn-tl
+#addf    and2.0 servo-thread
+
+#net     pgm-estop-0     input.0.btn-base        and2.0.in0
+#net     pgm-estop-1     input.0.btn-top2        and2.0.in1
+#net     pgm-estop       and2.0.out              halui.estop.activate
+
+
+# Because the Left Knob and Hat will never be active at the same time,
+# a sum2 block combines the two controls into single value (separate for
+# X and Y, of course). Each sum2 input has a separate gain setting, which
+# is a convenient place to adjust the Y axis sign.
+
+# left knob runs XY at variable rate
+# hat runs XY at full throttle
+# right knob runs Z at variable rate
+
+setp halui.jog-speed  [TRAJ]MAX_LINEAR_VELOCITY
+
+addf    sum2.0 servo-thread
+setp    sum2.0.gain0    +1.0
+setp    sum2.0.gain1    +1.0
+net     x-jog-knob      input.0.abs-x-position      sum2.0.in0
+net     x-jog-hat       input.0.abs-hat0x-position  sum2.0.in1
+net     x-jog-total     sum2.0.out                  halui.jog.0.analog
+
+addf    sum2.1 servo-thread
+setp    sum2.1.gain0    -1.0
+setp    sum2.1.gain1    -1.0
+net     y-jog-knob      input.0.abs-y-position      sum2.1.in0
+net     y-jog-hat       input.0.abs-hat0y-position  sum2.1.in1
+net     y-jog-total     sum2.1.out                  halui.jog.1.analog
+
+net     z-jog-knob      input.0.abs-rz-position     halui.jog.2.analog
+
