@@ -3,9 +3,6 @@
 # connect the jog wheel to the different axes, and let axisui choose which jogs
 #
 
-loadrt ilowpass
-loadrt scale
-
 net jogX axisui.jog.x => axis.0.jog-enable
 net jogY axisui.jog.y => axis.1.jog-enable
 net jogZ axisui.jog.z => axis.2.jog-enable

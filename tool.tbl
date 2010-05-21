@@ -1,6 +1,3 @@
-T1 P1 D0.750000 ;3/4 rougher 
-T2 P2 D0.250000 Z-1.216000 ;1/4 end mill 2 fl 
-T3 P3 D0.500000 Z-0.466900 ;1/2 end mill 2 fl 
-T4 P4 D0.250000 Z-1.372536 ;1/4 end mill 4 fl 
-T20 P20 D0.250000 ;1/4 drill 
-T5 P5 D0.062500 ;1/16 end mill 4 fl 
+T1 P1 D0.250000 Z-3.688199 ;1/4 endmill 
+T2 P2 D0.062500 Z-2.318568 ;1/16 endmill 
+T3 P3 D0.093750 Z-0.000000 ;3/32 drill 
