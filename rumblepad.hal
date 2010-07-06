@@ -1,6 +1,7 @@
 
 #
-# Logitech Cordless RumblePad 2
+# This HAL file hooks up a Logitech Cordless RumblePad 2 ($32 from NewEgg,
+# May 2010) as a cheesy pendant.
 #
 # references:
 #
