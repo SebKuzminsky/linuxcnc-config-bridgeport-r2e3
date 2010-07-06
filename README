@@ -1,0 +1,33 @@
+This configuration drives a particular Bridgeport Series 1 R2E3, converted
+from the factory Boss8 controller to EMC2 2.4 by Chris Radek and Sebastian
+Kuzminsky in the spring of 2010.
+
+The Bridgeport has the original Contraves NC400 servo amps, the original
+servos, limit & home switches, and spindle.
+
+It is driven by emc2 via a Mesa AnyIO board (5i20 in this case, though
+any AnyIO board should work), a Mesa 7i33 servo controller, and a Mesa
+7i37 opto-isolated I/O board.
+
+This config is based on the "hm2-servo" config originally written by
+Ted Hyde.  This config differs from Ted's in the following ways:
+
+    * it includes a properly integrated e-stop chain (via ClassicLadder)
+
+    * includes proper limit & home switches
+
+    * includes support for a VFD (GS2-23P0 from Automation Direct)
+      to power the spindle motor
+
+    * includes support for open-loop spindle speed control (using a
+      stepper to turn the Varispeed control, but lacking speed feedback
+      to emc2)
+
+    * includes support for the jogwheel on the original Boss8 control
+      panel
+
+    * includes support for manual tool changer
+
+    * includes support for a Logitech "RumblePad" cheesy-pendant (with
+      thanks to John Thornton, Ed Nisley, and Rick G)
+
