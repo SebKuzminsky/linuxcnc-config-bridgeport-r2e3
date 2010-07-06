@@ -1,4 +1,8 @@
 
+re-tune servos - accel problems when abruptly changing direction at max jog?
+
+better rumblepad config
+
 tool change stuff in both hm2-servo.hal and manual-tool-change.hal
 
 sum2.2 loaded but not used anywhere
