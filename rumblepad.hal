@@ -5,8 +5,36 @@
 #
 # references:
 #
+#     http://www.logitech.com/en-us/gaming/controllers/devices/287
 #     http://softsolder.wordpress.com/2010/03/23/logitech-dual-action-gamepad-as-emc2-pendant/
 #     http://wiki.linuxcnc.org/cgi-bin/emcinfo.pl?Adding_More_Controls_To_Simple_Remote_Pendant
+#
+# Mappings:
+#
+#  Rumblepad                 | HAL
+# ---------------------------+--------------------------------------------------------
+#  D-pad left/right          | abs-hat0x-position (float, but only -1,0,+1, scalable)
+#  D-pad up/down             | abs-hat0y-position (float, but only -1,0,+1, scalable)
+# ---------------------------+--------------------------------------------------------
+#  left joystick push        | btn-select (bit)
+#  left joystick left/right  | abs-x-position (float, -1 to +1, scalable)
+#  left joystick up/down     | abs-y-position (float, -1 to +1, scalable)
+# ---------------------------+--------------------------------------------------------
+#  right joystick push       | btn-start (bit)
+#  right joystick left/right | abs-z-position (float, -1 to +1, scalable)
+#  right joystick up/down    | abs-rz-position (float, -1 to +1, scalable)
+# ---------------------------+--------------------------------------------------------
+#  button 1                  | btn-a
+#  button 2                  | btn-b
+#  button 3                  | btn-c
+#  button 4                  | btn-x
+#  button 5                  | btn-y
+#  button 6                  | btn-z
+#  button 7                  | btn-tl
+#  button 8                  | btn-tr
+#  button 9                  | btn-tl2
+#  button 10                 | btn-tr2
+# ---------------------------+--------------------------------------------------------
 #
 
 
