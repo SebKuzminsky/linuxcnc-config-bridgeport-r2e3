@@ -1,6 +1,14 @@
 
 #
 # This HAL file hooks up the control panel.
+#
+#
+# Uses:
+#     hm2 stepgen.00, encoder.03
+#     gpio 28 & 29
+#     ilowpass.0
+#     mux4.0
+#
 # 
 # There control panel has these features:
 # 
@@ -41,3 +49,90 @@
 # hooked to a net called jog-increment, each enabled by a different bit
 # from the jog speed rotary switch.
 #
+
+
+
+
+#
+# low-pass filter the jogwheel, then connect it to the jog input on all the
+# axes
+#
+
+setp ilowpass.0.gain .02
+setp ilowpass.0.scale 250
+
+net jogcounts_raw <= hm2_5i20.0.encoder.03.count
+net jogcounts_raw => ilowpass.0.in
+
+net jogcounts_cooked  <= ilowpass.0.out
+net jogcounts_cooked  => axis.0.jog-counts
+net jogcounts_cooked  => axis.1.jog-counts
+net jogcounts_cooked  => axis.2.jog-counts
+
+addf ilowpass.0 servo-thread
+
+
+
+
+# FIXME: old junk from when axis helped jog:
+net jogX axisui.jog.x => axis.0.jog-enable
+net jogY axisui.jog.y => axis.1.jog-enable
+net jogZ axisui.jog.z => axis.2.jog-enable
+
+
+setp scale.0.gain .001
+
+net jogscale_raw <= axisui.jog.increment
+net jogscale_raw => scale.0.in
+
+net jogscale_cooked <= scale.0.out
+net jogscale_cooked => axis.0.jog-scale
+net jogscale_cooked => axis.1.jog-scale
+net jogscale_cooked => axis.2.jog-scale
+
+addf scale.0 servo-thread
+
+
+
+
+#
+# stepper driving the varispeed
+#
+
+
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirsetup        200
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirhold         200
+
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.steplen         40000
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.stepspace       40000
+
+# 1/2 stepping, 200 steps/inch
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.position-scale  -400
+
+# velocity mode
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.control-type 1
+
+# go to +5 for the optos in the Lin steppers
+setp hm2_[HOSTMOT2](BOARD).0.gpio.048.is_opendrain 1
+setp hm2_[HOSTMOT2](BOARD).0.gpio.049.is_opendrain 1
+
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxvel          20
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxaccel        50
+
+# step/dir
+setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.step_type       0
+
+# only turn the varispeed when the spindle is spinning
+net spindle-on => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
+
+
+# gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
+net varispeed_addr_0 hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not => mux4.0.sel0
+net varispeed_addr_1 hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not => mux4.0.sel1
+setp mux4.0.in0 0
+setp mux4.0.in1 -20
+setp mux4.0.in2 20
+setp mux4.0.in3 0  # should never happen
+net varispeed_delta mux4.0.out => hm2_[HOSTMOT2](BOARD).0.stepgen.00.velocity-cmd
+
+addf mux4.0 servo-thread
