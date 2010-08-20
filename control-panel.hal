@@ -1,0 +1,43 @@
+
+#
+# This HAL file hooks up the control panel.
+# 
+# There control panel has these features:
+# 
+#     * A rotary switch that selects which axis to jog: X, Y, or Z
+#     * A rotary switch that selects the jog increment: 0.010 or 0.001
+#     * 6 momentary push-buttons that do continuous jogs on all three axes.
+#     * A momentary push-button that turns the spindle on/off
+#     * A momentary toggle switch that spins the stepper that controls the varispeed.
+# 
+
+# 
+# Old situation:
+#
+#     axis-jogwheel.hal sets things up like this:
+#
+#     currently have axisui.jog.* hooked to axis.*.jog-enable, 
+#     axisui.jog.increment hooked to axis.*.jog-scale, and the jogwheel's 
+#     encoder counts hooked to axis.*.jog-counts.  So Axis controls what
+#     axis will be jogged and by # how much, and the jogwheel makes the jog
+#     happen.  This works great!
+# 
+# New situation:
+#
+#     control-panel.hal sets things up like this:
+#
+#     The axis selection switch makes the selected axis.*.jog-enable True
+#     and makes the others False.  The jog increment switch addresses a mux
+#     to output the desired jog increment to all the axis.*.jog-scale pins.
+#     The jogwheel stays connected just like now.
+#
+# The jog increment selector looks to hal like a bunch of bits, exactly one
+# of which is True at a time, and each bit corresponds to a different value
+# to feed to axis.*.jog-scale.  Heh, maybe use a mux16, and use each
+# different button as a different address line, and just skip the unused
+# addresses where multiple address lines are True at the same time.
+#     
+# Or maybe use tristate_float?  One tristate_float per jog speed, all
+# hooked to a net called jog-increment, each enabled by a different bit
+# from the jog speed rotary switch.
+#
