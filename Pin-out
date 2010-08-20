@@ -1,0 +1,20 @@
+
+-------+-------+---------------+----------------------------------
+ P3-1  | IO 24 | gpio          | E-stop in
+ P3-3  | IO 25 | gpio          | X home switch
+ P3-5  | IO 26 | gpio          | Y home switch
+ P3-7  | IO 27 | gpio          | Z home switch
+ P3-9  | IO 28 | gpio          | "spindle slower" button
+ P3-11 | IO 29 | gpio          | "spindle faster" button
+-------+-------+---------------+----------------------------------
+ P3-33 | IO 40 | gpio          | E-stop out
+ P3-35 | IO 41 | gpio          | Servo amp enable (for all axes)
+-------+-------+---------------+----------------------------------
+
+
+-------+------+----------------+----------------------------------
+ P4-1  | IO48 | stepgen 0 step | Varispeed stepper
+ P4-3  | IO49 | stepgen 0 dir  | Varispeed stepper
+-------+------+----------------+----------------------------------
+
+
