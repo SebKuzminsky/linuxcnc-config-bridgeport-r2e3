@@ -4,35 +4,21 @@
 #
 #
 # Uses:
-#     hm2 stepgen.00, encoder.03
-#     gpio 28 & 29
-#     ilowpass.0
-#     mux4.0
+#     encoder.03 (jogwheel)
+#     ilowpass.0 (to smooth the jogwheel)
+#     gpio 28 & 29 (varispeed spindle faster/slower switch input)
 #
 # 
 # There control panel has these features:
 # 
-#     * A rotary switch that selects which axis to jog: X, Y, or Z
-#     * A rotary switch that selects the jog increment: 0.010 or 0.001
-#     * 6 momentary push-buttons that do continuous jogs on all three axes.
-#     * A momentary push-button that turns the spindle on/off
-#     * A momentary toggle switch that spins the stepper that controls the varispeed.
+#     * a latching E-stop button
+#     * 6 momentary push-buttons that do continuous jogs on all three axes
+#     * a momentary push-button that turns the spindle on/off
+#     * a momentary toggle switch that spins the stepper that controls the varispeed
+#     * a rotary switch that selects which axis to jog: X, Y, or Z
+#     * a rotary switch that selects the jog increment: 0.0001, 0.001, or 0.010
+#     * a jog wheel
 # 
-
-# 
-# Old situation:
-#
-#     axis-jogwheel.hal sets things up like this:
-#
-#     currently have axisui.jog.* hooked to axis.*.jog-enable, 
-#     axisui.jog.increment hooked to axis.*.jog-scale, and the jogwheel's 
-#     encoder counts hooked to axis.*.jog-counts.  So Axis controls what
-#     axis will be jogged and by # how much, and the jogwheel makes the jog
-#     happen.  This works great!
-# 
-# New situation:
-#
-#     control-panel.hal sets things up like this:
 #
 #     The axis selection switch makes the selected axis.*.jog-enable True
 #     and makes the others False.  The jog increment switch addresses a mux
@@ -49,6 +35,61 @@
 # hooked to a net called jog-increment, each enabled by a different bit
 # from the jog speed rotary switch.
 #
+
+
+
+
+# estop
+
+
+
+
+# continuous jog
+
+
+
+
+#
+# hook up the spindle speed switch to the varispeed nets
+# gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
+#
+
+net varispeed_slower <= hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not
+net varispeed_faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
+
+
+
+
+# spindle on/off
+
+
+
+
+#
+# hook up the jog-axis selector switch to the axis jog-enable pins
+#
+
+net x-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.0.jog-enable
+net y-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.1.jog-enable
+net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.2.jog-enable
+
+
+
+
+# jog increment selector
+
+# set the jog increment for the jogwheel
+#setp scale.0.gain .001
+#
+#net jogscale_raw <= axisui.jog.increment
+#net jogscale_raw => scale.0.in
+#
+#net jogscale_cooked <= scale.0.out
+#net jogscale_cooked => axis.0.jog-scale
+#net jogscale_cooked => axis.1.jog-scale
+#net jogscale_cooked => axis.2.jog-scale
+#
+#addf scale.0 servo-thread
 
 
 
@@ -71,68 +112,3 @@ net jogcounts_cooked  => axis.2.jog-counts
 
 addf ilowpass.0 servo-thread
 
-
-
-
-# FIXME: old junk from when axis helped jog:
-net jogX axisui.jog.x => axis.0.jog-enable
-net jogY axisui.jog.y => axis.1.jog-enable
-net jogZ axisui.jog.z => axis.2.jog-enable
-
-
-setp scale.0.gain .001
-
-net jogscale_raw <= axisui.jog.increment
-net jogscale_raw => scale.0.in
-
-net jogscale_cooked <= scale.0.out
-net jogscale_cooked => axis.0.jog-scale
-net jogscale_cooked => axis.1.jog-scale
-net jogscale_cooked => axis.2.jog-scale
-
-addf scale.0 servo-thread
-
-
-
-
-#
-# stepper driving the varispeed
-#
-
-
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirsetup        200
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.dirhold         200
-
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.steplen         40000
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.stepspace       40000
-
-# 1/2 stepping, 200 steps/inch
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.position-scale  -400
-
-# velocity mode
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.control-type 1
-
-# go to +5 for the optos in the Lin steppers
-setp hm2_[HOSTMOT2](BOARD).0.gpio.048.is_opendrain 1
-setp hm2_[HOSTMOT2](BOARD).0.gpio.049.is_opendrain 1
-
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxvel          20
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.maxaccel        50
-
-# step/dir
-setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.step_type       0
-
-# only turn the varispeed when the spindle is spinning
-net spindle-on => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
-
-
-# gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
-net varispeed_addr_0 hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not => mux4.0.sel0
-net varispeed_addr_1 hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not => mux4.0.sel1
-setp mux4.0.in0 0
-setp mux4.0.in1 -20
-setp mux4.0.in2 20
-setp mux4.0.in3 0  # should never happen
-net varispeed_delta mux4.0.out => hm2_[HOSTMOT2](BOARD).0.stepgen.00.velocity-cmd
-
-addf mux4.0 servo-thread

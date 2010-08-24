@@ -1,0 +1,7 @@
+
+#
+# this hal file connects the control-panel pyVCP to the control panel
+#
+
+net ext-estop => control-panel-vcp.led.estop
+

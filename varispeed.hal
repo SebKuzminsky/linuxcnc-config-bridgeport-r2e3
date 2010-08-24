@@ -1,6 +1,16 @@
 
 #
-# stepper driving the varispeed
+# varispeed control
+#
+# uses:
+#
+#     hm2 stepgen 00 (IO 48 & 49)
+#     mux4.0
+#
+
+
+#
+# configure the stepper driving the varispeed
 #
 
 
@@ -29,10 +39,10 @@ setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.step_type       0
 # only turn the varispeed when the spindle is spinning
 net spindle-on => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
 
-
 # gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
-net varispeed_addr_0 hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not => mux4.0.sel0
-net varispeed_addr_1 hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not => mux4.0.sel1
+net varispeed_slower => mux4.0.sel0
+net varispeed_faster => mux4.0.sel1
+
 setp mux4.0.in0 0
 setp mux4.0.in1 -20
 setp mux4.0.in2 20
