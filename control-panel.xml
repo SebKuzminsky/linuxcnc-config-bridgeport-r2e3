@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+
+    <hbox>
+
+        <vbox>
+            <relief>RIDGE</relief>
+            <bd>6</bd>
+
+            <label><text>"E-Stop"</text></label>
+
+            <led>
+                <halpin>"led.estop"</halpin>
+                <size>50</size>
+            </led>
+        </vbox>
+
+        <table>
+
+            <tablerow/>
+
+                <label><text>""</text></label>
+
+                <hbox>
+                    <relief>RIDGE</relief>
+                    <bd>6</bd>
+                    <led>
+                        <halpin>"led.jog-y-plus"</halpin>
+                        <size>20</size>
+                    </led>
+                    <label><text>"+Y"</text></label>
+                </hbox>
+
+                <label><text>""</text></label>
+
+            <tablerow/>
+
+                <hbox>
+                    <relief>RIDGE</relief>
+                    <bd>6</bd>
+                    <led>
+                        <halpin>"led.jog-x-minus"</halpin>
+                        <size>20</size>
+                    </led>
+                    <label><text>"-X"</text></label>
+                </hbox>
+
+                <label><text>""</text></label>
+
+                <hbox>
+                    <relief>RIDGE</relief>
+                    <bd>6</bd>
+                    <led>
+                        <halpin>"led.jog-x-plus"</halpin>
+                        <size>20</size>
+                    </led>
+                    <label><text>"+X"</text></label>
+                </hbox>
+
+            <tablerow/>
+
+                <label><text>""</text></label>
+
+                <hbox>
+                    <relief>RIDGE</relief>
+                    <bd>6</bd>
+                    <led>
+                        <halpin>"led.jog-y-minus"</halpin>
+                        <size>20</size>
+                    </led>
+                    <label><text>"-Y"</text></label>
+                </hbox>
+
+                <label><text>""</text></label>
+
+        </table> 
+
+
+        <vbox>
+
+            <hbox>
+                <relief>RIDGE</relief>
+                <bd>6</bd>
+                <led>
+                    <halpin>"led.jog-z-plus"</halpin>
+                    <size>20</size>
+                </led>
+                <label><text>"+Z"</text></label>
+            </hbox>
+
+            <hbox>
+                <relief>RIDGE</relief>
+                <bd>6</bd>
+                <led>
+                    <halpin>"led.jog-l-minus"</halpin>
+                    <size>20</size>
+                </led>
+                <label><text>"-Z"</text></label>
+            </hbox>
+
+        </vbox>
+
+    </hbox>
+
+
+    <hbox>
+
+        <vbox>
+            <relief>RIDGE</relief>
+            <bd>6</bd>
+
+            <label><text>"Spindle Speed"</text></label>
+
+            <hbox>
+
+                <vbox>
+                    <label><text>"Slower"</text></label>
+                    <led>
+                        <halpin>"led.spindle-slower"</halpin>
+                        <size>30</size>
+                    </led>
+                </vbox>
+
+                <vbox>
+                    <label><text>"Faster"</text></label>
+                    <led>
+                        <halpin>"led.spindle-faster"</halpin>
+                        <size>30</size>
+                    </led>
+                </vbox>
+
+            </hbox>
+
+        </vbox>
+
+        <vbox>
+            <relief>RIDGE</relief>
+            <bd>6</bd>
+
+            <label><text>"Spindle On/Off"</text></label>
+            <led>
+                <halpin>"led.spindle-on-off"</halpin>
+                <size>20</size>
+            </led>
+        </vbox>
+
+    </hbox>
+
+
+    <hbox>
+
+        <vbox>
+
+            <relief>RIDGE</relief>
+            <bd>6</bd>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-x"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="Jog X"/>
+            </hbox>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-y"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="Jog Y"/>
+            </hbox>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-z"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="Jog Z"/>
+            </hbox>
+
+        </vbox>
+
+        <vbox>
+
+            <relief>RIDGE</relief>
+            <bd>6</bd>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-inc-0001"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="0.0001"/>
+            </hbox>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-inc-001"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="0.001"/>
+            </hbox>
+
+            <hbox>
+                <led>
+                    <halpin>"led.jog-inc-010"</halpin>
+                    <size>20</size>
+                </led>
+                <label text="0.010"/>
+            </hbox>
+
+        </vbox>
+
+    </hbox>
+
+
+    <hbox>
+
+        <relief>RIDGE</relief>
+        <bd>6</bd>
+
+        <label><text>"Jog Wheel"</text></label>
+
+        <s32>
+            <halpin>"jogwheel"</halpin>
+            <font>("Helvetica",24)</font>
+            <format>"6d"</format>
+            <width>6</width>
+        </s32>
+
+    </hbox>
+
+</pyvcp>
