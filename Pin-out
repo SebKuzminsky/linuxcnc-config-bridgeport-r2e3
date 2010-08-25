@@ -1,16 +1,47 @@
 
+P2 is connected to a 7i33 Quad Analog Servo Amp Interface.
+
+    Axis 0 is X, Axis 1 is Y, and Axis 2 is Z.
+
+    The encoder on Axis 3 is the jog wheel.  The pwmgen on Axis 3
+    is unused.
+
+
+P3 is connected to a 7i37 Isolated I/O Board.
+
+    The 7i37 ias 8 outputs and 16 inputs.
+
 -------+-------+---------------+----------------------------------
- P3-1  | IO 24 | gpio          | E-stop in
- P3-3  | IO 25 | gpio          | X home switch
- P3-5  | IO 26 | gpio          | Y home switch
- P3-7  | IO 27 | gpio          | Z home switch
- P3-9  | IO 28 | gpio          | "spindle slower" button
- P3-11 | IO 29 | gpio          | "spindle faster" button
+ P3-1  | IO 24 | gpio (in)     | E-stop in
+ P3-3  | IO 25 | gpio (in)     | X home switch
+ P3-5  | IO 26 | gpio (in)     | Y home switch
+ P3-7  | IO 27 | gpio (in)     | Z home switch
+ P3-9  | IO 28 | gpio (in)     | "spindle slower" button
+ P3-11 | IO 29 | gpio (in)     | "spindle faster" button
+
+ P3-13 | IO 30 | gpio (in)     | Jog X Enable
+ P3-15 | IO 31 | gpio (in)     | Jog Y Enable
+ P3-17 | IO 32 | gpio (in)     | Jog Z Enable
+ P3-19 | IO 33 | gpio (in)     | Jog Increment 0.0001
+ P3-21 | IO 34 | gpio (in)     | Jog Increment 0.001
+ P3-23 | IO 35 | gpio (in)     | Jog Increment 0.010
+ P3-25 | IO 36 | gpio (in)     | Spindle Start/Stop
+ P3-27 | IO 37 | gpio (in)     | Jog Z+
+ P3-29 | IO 38 | gpio (in)     | Jog Z-
+ P3-31 | IO 39 | gpio (in)     | (unused)
 -------+-------+---------------+----------------------------------
- P3-33 | IO 40 | gpio          | E-stop out
- P3-35 | IO 41 | gpio          | Servo amp enable (for all axes)
+ P3-33 | IO 40 | gpio (out)    | E-stop out
+ P3-35 | IO 41 | gpio (out)    | Servo amp enable (for all axes)
+ P3-37 | IO 42 | gpio (out)    | (unused)
+ P3-39 | IO 43 | gpio (out)    | (unused)
+ P3-41 | IO 44 | gpio (out)    | (unused)
+ P3-43 | IO 45 | gpio (out)    | (unused)
+ P3-45 | IO 46 | gpio (out)    | (unused)
+ P3-47 | IO 47 | gpio (out)    | (unused)
 -------+-------+---------------+----------------------------------
 
+
+P4 is connected to a 50-pin break-out board.
 
 -------+------+----------------+----------------------------------
  P4-1  | IO48 | stepgen 0 step | Varispeed stepper
