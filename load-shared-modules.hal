@@ -3,7 +3,7 @@
 loadrt ilowpass count=1
 
 # instance 0 used by axis-jogwheel
-loadrt scale count=1
+#loadrt scale count=1
 
 
 # instances 0-2 used by rumblepad
@@ -12,4 +12,8 @@ loadrt sum2 count=3
 
 # instance 0 used by varispeed
 loadrt mux4 count=1
+
+
+# these select the jog increment (in control-panel.hel)
+loadrt tristate_float count=3
 

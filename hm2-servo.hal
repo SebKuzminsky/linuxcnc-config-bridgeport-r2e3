@@ -261,9 +261,7 @@ net z-index-enable => pid.2.index-enable
 net gui-estop <= iocontrol.0.user-enable-out
 net gui-estop => classicladder.0.in-00
 
-# this bit is an external estop button
-# wire #46 in the bp wiring diagram
-net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
+# here's a net for triggering an estop via a gpio input
 net ext-estop => classicladder.0.in-01
 net ext-estop => iocontrol.0.emc-enable-in
 

@@ -6,6 +6,7 @@
 # Uses:
 #     encoder.03 (jogwheel)
 #     ilowpass.0 (to smooth the jogwheel)
+#     tristate_float 0-2 (to select the jog increment)
 #     gpio 28 & 29 (varispeed spindle faster/slower switch input)
 #
 # 
@@ -40,6 +41,9 @@
 
 
 # estop
+# this bit is an external estop button
+# wire #46 in the bp wiring diagram
+net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
 
 
 
@@ -60,7 +64,12 @@ net varispeed_faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
 
 
 
+#
 # spindle on/off
+# FIXME: do i need to latch the gpio?
+#
+
+net spindle-start hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => halui.spindle.start
 
 
 
@@ -76,20 +85,29 @@ net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.2.jog-enable
 
 
 
+#
 # jog increment selector
+#
 
-# set the jog increment for the jogwheel
-#setp scale.0.gain .001
-#
-#net jogscale_raw <= axisui.jog.increment
-#net jogscale_raw => scale.0.in
-#
-#net jogscale_cooked <= scale.0.out
-#net jogscale_cooked => axis.0.jog-scale
-#net jogscale_cooked => axis.1.jog-scale
-#net jogscale_cooked => axis.2.jog-scale
-#
-#addf scale.0 servo-thread
+setp tristate-float.0.in 0.0001
+setp tristate-float.1.in 0.001
+setp tristate-float.2.in 0.010
+
+net select-jog-inc-0.0001 hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.0.enable
+net select-jog-inc-0.001  hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.1.enable
+net select-jog-inc-0.010  hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.2.enable
+
+tristate-float.0.out => jog-scale
+tristate-float.1.out => jog-scale
+tristate-float.2.out => jog-scale
+
+net jog-scale => axis.0.jog-scale
+net jog-scale => axis.1.jog-scale
+net jog-scale => axis.2.jog-scale
+
+addf tristate-float.0 servo-thread
+addf tristate-float.1 servo-thread
+addf tristate-float.2 servo-thread
 
 
 
