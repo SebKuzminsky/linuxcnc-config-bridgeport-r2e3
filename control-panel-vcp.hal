@@ -3,5 +3,26 @@
 # this hal file connects the control-panel pyVCP to the control panel
 #
 
+loadusr -Wn control-panel-vcp pyvcp -c control-panel-vcp control-panel-vcp.xml 
+
+
 net ext-estop => control-panel-vcp.led.estop
+
+net continuous-jog-z-plus  => control-panel-vcp.led.jog-z-plus
+net continuous-jog-z-minus => control-panel-vcp.led.jog-z-minus
+
+net varispeed-slower => control-panel-vcp.led.spindle-slower
+net varispeed-faster => control-panel-vcp.led.spindle-faster
+
+net spindle-start => control-panel-vcp.led.spindle-on-off
+
+net x-jog-enable => control-panel-vcp.led.jog-x
+net y-jog-enable => control-panel-vcp.led.jog-y
+net z-jog-enable => control-panel-vcp.led.jog-z
+
+net select-jog-inc-0.0001 => control-panel-vcp.led.jog-inc-0001
+net select-jog-inc-0.001  => control-panel-vcp.led.jog-inc-001
+net select-jog-inc-0.010  => control-panel-vcp.led.jog-inc-010
+
+net jogcounts_cooked => control-panel-vcp.jogwheel
 

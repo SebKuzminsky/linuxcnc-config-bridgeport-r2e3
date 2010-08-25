@@ -49,6 +49,10 @@ net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
 
 
 # continuous jog
+# FIXME
+
+net continuous-jog-z-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.037.in_not
+net continuous-jog-z-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.038.in_not
 
 
 
@@ -58,18 +62,20 @@ net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
 # gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
 #
 
-net varispeed_slower <= hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not
-net varispeed_faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
+net varispeed-slower <= hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not
+net varispeed-faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
 
 
 
 
 #
 # spindle on/off
-# FIXME: do i need to latch the gpio?
+# FIXME
+# rising edge on halui.spindle.start starts the spindle
+# rising edge on halui.spindle.stop stops the spindle
 #
 
-net spindle-start hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => halui.spindle.start
+net spindle-start hm2_[HOSTMOT2](BOARD).0.gpio.036.in_not => halui.spindle.start
 
 
 
@@ -78,9 +84,9 @@ net spindle-start hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => halui.spindle.start
 # hook up the jog-axis selector switch to the axis jog-enable pins
 #
 
-net x-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.0.jog-enable
-net y-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.1.jog-enable
-net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.2.jog-enable
+net x-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.030.in_not => axis.0.jog-enable
+net y-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.031.in_not => axis.1.jog-enable
+net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.032.in_not => axis.2.jog-enable
 
 
 
@@ -89,17 +95,17 @@ net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => axis.2.jog-enable
 # jog increment selector
 #
 
-setp tristate-float.0.in 0.0001
-setp tristate-float.1.in 0.001
-setp tristate-float.2.in 0.010
+setp tristate-float.0.in 0.0000001
+setp tristate-float.1.in 0.000001
+setp tristate-float.2.in 0.000010
 
-net select-jog-inc-0.0001 hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.0.enable
-net select-jog-inc-0.001  hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.1.enable
-net select-jog-inc-0.010  hm2_[HOSTMOT2](BOARD).0.gpio.0XX.in_not => tristate-float.2.enable
+net select-jog-inc-0.0001 hm2_[HOSTMOT2](BOARD).0.gpio.033.in_not => tristate-float.0.enable
+net select-jog-inc-0.001  hm2_[HOSTMOT2](BOARD).0.gpio.034.in_not => tristate-float.1.enable
+net select-jog-inc-0.010  hm2_[HOSTMOT2](BOARD).0.gpio.035.in_not => tristate-float.2.enable
 
-tristate-float.0.out => jog-scale
-tristate-float.1.out => jog-scale
-tristate-float.2.out => jog-scale
+net jog-scale <= tristate-float.0.out
+net jog-scale <= tristate-float.1.out
+net jog-scale <= tristate-float.2.out
 
 net jog-scale => axis.0.jog-scale
 net jog-scale => axis.1.jog-scale
@@ -113,8 +119,13 @@ addf tristate-float.2 servo-thread
 
 
 #
-# low-pass filter the jogwheel, then connect it to the jog input on all the
-# axes
+# My jog wheel has 50 clicks per revolution, and 4 quadrature edges per
+# click.
+# 
+# Low-pass filter the jogwheel, and scale it so one click is 1000 counts
+# coming out of the ilowpass.
+#
+# Then connect it to the jog input on all the axes.
 #
 
 setp ilowpass.0.gain .02

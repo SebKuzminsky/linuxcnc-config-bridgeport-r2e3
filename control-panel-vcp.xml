@@ -92,7 +92,7 @@
                 <relief>RIDGE</relief>
                 <bd>6</bd>
                 <led>
-                    <halpin>"led.jog-l-minus"</halpin>
+                    <halpin>"led.jog-z-minus"</halpin>
                     <size>20</size>
                 </led>
                 <label><text>"-Z"</text></label>

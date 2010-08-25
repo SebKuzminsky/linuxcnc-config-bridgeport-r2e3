@@ -40,8 +40,8 @@ setp hm2_[HOSTMOT2](BOARD).0.stepgen.00.step_type       0
 net spindle-on => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
 
 # gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
-net varispeed_slower => mux4.0.sel0
-net varispeed_faster => mux4.0.sel1
+net varispeed-slower => mux4.0.sel0
+net varispeed-faster => mux4.0.sel1
 
 setp mux4.0.in0 0
 setp mux4.0.in1 -20
