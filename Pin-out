@@ -18,7 +18,6 @@ P3 is connected to a 7i37 Isolated I/O Board.
  P3-7  | IO 27 | gpio (in)     | Z home switch
  P3-9  | IO 28 | gpio (in)     | "spindle slower" button
  P3-11 | IO 29 | gpio (in)     | "spindle faster" button
-
  P3-13 | IO 30 | gpio (in)     | Jog X Enable
  P3-15 | IO 31 | gpio (in)     | Jog Y Enable
  P3-17 | IO 32 | gpio (in)     | Jog Z Enable
