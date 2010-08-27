@@ -48,11 +48,16 @@ net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
 
 
 
+#
 # continuous jog
-# FIXME: use halui.jog
+# FIXME: just Z for now, need another 7i37...
+#
 
 net continuous-jog-z-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.037.in_not
+net continuous-jog-z-plus  => halui.jog.2.plus
+
 net continuous-jog-z-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.038.in_not
+net continuous-jog-z-minus => halui.jog.2.minus
 
 
 
