@@ -63,20 +63,51 @@ net continuous-jog-z-minus => halui.jog.2.minus
 
 
 #
-# hook up the spindle speed switch to the varispeed nets
-# gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
+# Spindle control is a bit involved.  It's controlled by three momentary
+# switches.  One is a push-button labeled "Spindle On/Off", and the other
+# two are an (on)-off-(on) knob.
+#
+# When the spindle is off, rotate the knob ccw & push the button to start
+# the spindle ccw, or rotate the knob cw and push the button to start the
+# spindle cw.
+#
+# When the spindle is on, rotate the knob ccw to decrease the speed on the
+# Varispeed, or rotate the knob cw to increase the speed.  Push the On/Off
+# button to turn the spindle off.
+#
+# While the On/Off button is held in, the Varispeed control is inhibited.
+#
+# FIXME: it'd be nice to inhibit Varispeed control from when the spindle is
+# turned on to when then Spindle On/Off button is released, rather than
+# just while the Spindle On/Off button is held down...
 #
 
-net varispeed-slower <= hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not
-net varispeed-faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
+# gpio 36 is the On/Off momentary
+net spindle-button     <= hm2_[HOSTMOT2](BOARD).0.gpio.036.in_not
+net not-spindle-button <= hm2_[HOSTMOT2](BOARD).0.gpio.036.in
+
+# gpio 28 & 29 are the (on)-off-(on) momentary on the faceplace
+net spindle-knob-ccw <= hm2_[HOSTMOT2](BOARD).0.gpio.028.in_not
+net spindle-knob-cw  <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
+
+
+# spindle speed control - slower
+net not-spindle-button => and2.4.in0
+net spindle-knob-ccw   => and2.4.in1
+net varispeed-slower   <= and2.4.out
+addf and2.4 servo-thread 2
+
+# spindle speed control - faster
+net not-spindle-button => and2.5.in0
+net spindle-knob-cw    => and2.5.in1
+net varispeed-faster   <= and2.5.out
+addf and2.5 servo-thread 3
 
 
 
 
 #
 # spindle on/off
-#
-# FIXME: inhibit varispeed control while the spindle-on-off-button is held
 #
 # halui.spindle.is-on is true if the spindle is spinning
 #
@@ -85,45 +116,42 @@ net varispeed-faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
 # rising edge on halui.spindle.stop stops the spindle
 #
 
-setp oneshot.0.width 0.010
-net spindle-button <= hm2_[HOSTMOT2](BOARD).0.gpio.036.in_not
+setp oneshot.0.width 0.100
 net spindle-button => oneshot.0.in
-net spindle-button-pushed <= oneshot.0.out
+net spindle-button-oneshot <= oneshot.0.out
+addf oneshot.0 servo-thread 4
 
 net halui-spindle-is-on <= halui.spindle.is-on
-
 net halui-spindle-is-on => not.0.in
-net spindle-is-off <= not.0.out
+net spindle-is-off      <= not.0.out
+addf not.0 servo-thread 5
 
 # spindle-button AND is-on => stop
-net spindle-button-pushed => and2.0.in0
-net halui-spindle-is-on => and2.0.in1
-net turn-spindle-off <= and2.0.out
-net turn-spindle-off => halui.spindle.stop
+net spindle-button-oneshot => and2.0.in0
+net halui-spindle-is-on    => and2.0.in1
+net turn-spindle-off       <= and2.0.out
+net turn-spindle-off       => halui.spindle.stop
+addf and2.0 servo-thread 6
 
 # spindle-button AND (NOT is-on)
-net spindle-button-pushed => and2.1.in0
-net spindle-is-off => and2.1.in1
+net spindle-button-oneshot   => and2.1.in0
+net spindle-is-off           => and2.1.in1
 net spindle-button-while-off <= and2.1.out
+addf and2.1 servo-thread 7
 
 # (spindle-button AND (NOT is-on)) and varispeed-faster => forward
 net spindle-button-while-off => and2.2.in0
-net varispeed-faster => and2.2.in1
-net spindle-cw <= and2.2.out
-net spindle-cw => halui.spindle.forward
+net spindle-knob-cw          => and2.2.in1
+net spindle-cw               <= and2.2.out
+net spindle-cw               => halui.spindle.forward
+addf and2.2 servo-thread 8
 
 # (spindle-button AND (NOT is-on)) and varispeed-slower => reverse
 net spindle-button-while-off => and2.3.in0
-net varispeed-slower => and2.3.in1
-net spindle-ccw <= and2.3.out
-net spindle-ccw => halui.spindle.reverse
-
-addf oneshot.0 servo-thread
-addf not.0 servo-thread
-addf and2.0 servo-thread
-addf and2.1 servo-thread
-addf and2.2 servo-thread
-addf and2.3 servo-thread
+net spindle-knob-ccw         => and2.3.in1
+net spindle-ccw              <= and2.3.out
+net spindle-ccw              => halui.spindle.reverse
+addf and2.3 servo-thread 9
 
 
 

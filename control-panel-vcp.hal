@@ -14,7 +14,7 @@ net continuous-jog-z-minus => control-panel-vcp.led.jog-z-minus
 net varispeed-slower => control-panel-vcp.led.spindle-slower
 net varispeed-faster => control-panel-vcp.led.spindle-faster
 
-net spindle-start => control-panel-vcp.led.spindle-on-off
+net spindle-button => control-panel-vcp.led.spindle-on-off
 
 net x-jog-enable => control-panel-vcp.led.jog-x
 net y-jog-enable => control-panel-vcp.led.jog-y

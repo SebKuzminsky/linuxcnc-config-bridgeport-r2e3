@@ -19,6 +19,6 @@ loadrt tristate_float count=3
 
 
 loadrt not count=1
-loadrt and2 count=4
+loadrt and2 count=6
 loadrt oneshot count=1
 
