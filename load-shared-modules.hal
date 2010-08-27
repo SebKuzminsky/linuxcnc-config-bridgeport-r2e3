@@ -17,3 +17,8 @@ loadrt mux4 count=1
 # these select the jog increment (in control-panel.hel)
 loadrt tristate_float count=3
 
+
+loadrt not count=1
+loadrt and2 count=4
+loadrt oneshot count=1
+

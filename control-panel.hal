@@ -75,12 +75,55 @@ net varispeed-faster <= hm2_[HOSTMOT2](BOARD).0.gpio.029.in_not
 
 #
 # spindle on/off
-# FIXME
-# rising edge on halui.spindle.start starts the spindle
+#
+# FIXME: inhibit varispeed control while the spindle-on-off-button is held
+#
+# halui.spindle.is-on is true if the spindle is spinning
+#
+# rising edge on halui.spindle.forward makes it go clockwise
+# rising edge on halui.spindle.reverse makes it go counter-clockwise
 # rising edge on halui.spindle.stop stops the spindle
 #
 
-net spindle-start hm2_[HOSTMOT2](BOARD).0.gpio.036.in_not => halui.spindle.start
+setp oneshot.0.width 0.010
+net spindle-button <= hm2_[HOSTMOT2](BOARD).0.gpio.036.in_not
+net spindle-button => oneshot.0.in
+net spindle-button-pushed <= oneshot.0.out
+
+net halui-spindle-is-on <= halui.spindle.is-on
+
+net halui-spindle-is-on => not.0.in
+net spindle-is-off <= not.0.out
+
+# spindle-button AND is-on => stop
+net spindle-button-pushed => and2.0.in0
+net halui-spindle-is-on => and2.0.in1
+net turn-spindle-off <= and2.0.out
+net turn-spindle-off => halui.spindle.stop
+
+# spindle-button AND (NOT is-on)
+net spindle-button-pushed => and2.1.in0
+net spindle-is-off => and2.1.in1
+net spindle-button-while-off <= and2.1.out
+
+# (spindle-button AND (NOT is-on)) and varispeed-faster => forward
+net spindle-button-while-off => and2.2.in0
+net varispeed-faster => and2.2.in1
+net spindle-cw <= and2.2.out
+net spindle-cw => halui.spindle.forward
+
+# (spindle-button AND (NOT is-on)) and varispeed-slower => reverse
+net spindle-button-while-off => and2.3.in0
+net varispeed-slower => and2.3.in1
+net spindle-ccw <= and2.3.out
+net spindle-ccw => halui.spindle.reverse
+
+addf oneshot.0 servo-thread
+addf not.0 servo-thread
+addf and2.0 servo-thread
+addf and2.1 servo-thread
+addf and2.2 servo-thread
+addf and2.3 servo-thread
 
 
 
