@@ -43,9 +43,12 @@ net spindle-on => hm2_[HOSTMOT2](BOARD).0.stepgen.00.enable
 net varispeed-slower => mux4.0.sel0
 net varispeed-faster => mux4.0.sel1
 
+# max speed on the stepper
+# when the weather is warm it works fine at +/- 20 but in the cold it stalls at that speed
+# in the cold it works fine at +/- 15
 setp mux4.0.in0 0
-setp mux4.0.in1 -20
-setp mux4.0.in2 20
+setp mux4.0.in1 -15
+setp mux4.0.in2 15
 setp mux4.0.in3 0  # should never happen
 net varispeed_delta mux4.0.out => hm2_[HOSTMOT2](BOARD).0.stepgen.00.velocity-cmd
 
