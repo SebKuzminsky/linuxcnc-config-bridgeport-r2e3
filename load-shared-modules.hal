@@ -1,6 +1,8 @@
 
-# instance 0 used by axis-jogwheel
-loadrt ilowpass count=1
+# instance 0 used by control-panel
+# from control-panel.hal: loadrt ilowpass names=ilowpass.cp
+# from shuttlexpress.hal: loadrt ilowpass names=sxp
+loadrt ilowpass names=ilowpass.cp
 
 
 # instances 0-2 used by rumblepad

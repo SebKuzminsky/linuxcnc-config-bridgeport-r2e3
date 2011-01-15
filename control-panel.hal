@@ -5,7 +5,7 @@
 #
 # Uses:
 #     encoder.03 (jogwheel)
-#     ilowpass.0 (to smooth the jogwheel)
+#     ilowpass.cp (to smooth the jogwheel)
 #     tristate_float 0-2 (to select the jog increment)
 #     gpio 28 & 29 (varispeed spindle faster/slower switch input)
 #
@@ -37,6 +37,7 @@
 # from the jog speed rotary switch.
 #
 
+# loadrt ilowpass names=ilowpass.cp
 
 
 
@@ -196,16 +197,16 @@ addf tristate-float.2 servo-thread
 # Then connect it to the jog input on all the axes.
 #
 
-setp ilowpass.0.gain .02
-setp ilowpass.0.scale 250
+setp ilowpass.cp.gain .02
+setp ilowpass.cp.scale 250
 
 net jogcounts_raw <= hm2_5i20.0.encoder.03.count
-net jogcounts_raw => ilowpass.0.in
+net jogcounts_raw => ilowpass.cp.in
 
-net jogcounts_cooked  <= ilowpass.0.out
+net jogcounts_cooked  <= ilowpass.cp.out
 net jogcounts_cooked  => axis.0.jog-counts
 net jogcounts_cooked  => axis.1.jog-counts
 net jogcounts_cooked  => axis.2.jog-counts
 
-addf ilowpass.0 servo-thread
+addf ilowpass.cp servo-thread
 
