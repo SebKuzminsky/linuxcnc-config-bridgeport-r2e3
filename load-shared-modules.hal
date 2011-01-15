@@ -14,7 +14,9 @@ loadrt mux4 count=1
 
 
 # these select the jog increment (in control-panel.hel)
-loadrt tristate_float count=3
+# from shuttlexpress.hal: names=tristate-float.sxp0,tristate-float.sxp1,tristate-float.sxp2,tristate-float.sxp3,tristate-float.sxp4,tristate-float.sxp5,tristate-float.sxp6,tristate-float.sxp7,tristate-float.sxp-jog-increment-0,tristate-float.sxp-jog-increment-1,tristate-float.sxp-jog-increment-2,tristate-float.sxp-jog-increment-3
+# from control-panel.hal: tristate-float.cp0,tristate-float.cp1,tristate-float.cp2
+loadrt tristate_float names=tristate-float.cp0,tristate-float.cp1,tristate-float.cp2
 
 
 loadrt not count=1

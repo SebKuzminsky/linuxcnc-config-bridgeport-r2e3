@@ -6,7 +6,7 @@
 # Uses:
 #     encoder.03 (jogwheel)
 #     ilowpass.cp (to smooth the jogwheel)
-#     tristate_float 0-2 (to select the jog increment)
+#     tristate_float cp0, cp1, cp2 (to select the jog increment)
 #     gpio 28 & 29 (varispeed spindle faster/slower switch input)
 #
 # 
@@ -164,25 +164,25 @@ net z-jog-enable hm2_[HOSTMOT2](BOARD).0.gpio.032.in_not => axis.2.jog-enable
 # jog increment selector
 #
 
-setp tristate-float.0.in 0.0000001
-setp tristate-float.1.in 0.000001
-setp tristate-float.2.in 0.000010
+setp tristate-float.cp0.in 0.0000001
+setp tristate-float.cp1.in 0.000001
+setp tristate-float.cp2.in 0.000010
 
-net select-jog-inc-0.0001 hm2_[HOSTMOT2](BOARD).0.gpio.033.in_not => tristate-float.0.enable
-net select-jog-inc-0.001  hm2_[HOSTMOT2](BOARD).0.gpio.034.in_not => tristate-float.1.enable
-net select-jog-inc-0.010  hm2_[HOSTMOT2](BOARD).0.gpio.035.in_not => tristate-float.2.enable
+net select-jog-inc-0.0001 hm2_[HOSTMOT2](BOARD).0.gpio.033.in_not => tristate-float.cp0.enable
+net select-jog-inc-0.001  hm2_[HOSTMOT2](BOARD).0.gpio.034.in_not => tristate-float.cp1.enable
+net select-jog-inc-0.010  hm2_[HOSTMOT2](BOARD).0.gpio.035.in_not => tristate-float.cp2.enable
 
-net jog-scale <= tristate-float.0.out
-net jog-scale <= tristate-float.1.out
-net jog-scale <= tristate-float.2.out
+net jog-scale <= tristate-float.cp0.out
+net jog-scale <= tristate-float.cp1.out
+net jog-scale <= tristate-float.cp2.out
 
 net jog-scale => axis.0.jog-scale
 net jog-scale => axis.1.jog-scale
 net jog-scale => axis.2.jog-scale
 
-addf tristate-float.0 servo-thread
-addf tristate-float.1 servo-thread
-addf tristate-float.2 servo-thread
+addf tristate-float.cp0 servo-thread
+addf tristate-float.cp1 servo-thread
+addf tristate-float.cp2 servo-thread
 
 
 
