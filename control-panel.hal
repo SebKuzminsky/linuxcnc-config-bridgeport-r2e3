@@ -40,14 +40,6 @@
 
 
 
-# estop
-# this bit is an external estop button
-# wire #46 in the bp wiring diagram
-net ext-estop <= hm2_[HOSTMOT2](BOARD).0.gpio.024.in_not
-
-
-
-
 #
 # continuous jog
 # FIXME: just Z for now, need another 7i37...
