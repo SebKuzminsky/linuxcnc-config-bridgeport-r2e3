@@ -20,6 +20,10 @@ loadrt tristate_float names=tristate-float.cp0,tristate-float.cp1,tristate-float
 
 
 loadrt not count=1
-loadrt and2 count=6
 loadrt oneshot count=1
+
+
+# from control-panel.hal: and.0-and.5
+# from shuttlexpress.hal: loadrt and2 names=and2.sxp-x-pos,and2.sxp-x-neg,and2.sxp-y-pos,and2.sxp-y-neg,and2.sxp-z-pos,and2.sxp-z-neg
+loadrt and2 names=and2.0,and2.1,and2.2,and2.3,and2.4,and2.5
 
