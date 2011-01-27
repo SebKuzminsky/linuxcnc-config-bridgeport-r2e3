@@ -200,7 +200,7 @@ addf tristate-float.cp2 servo-thread
 setp ilowpass.cp.gain .02
 setp ilowpass.cp.scale 250
 
-net jogcounts_raw <= hm2_5i20.0.encoder.03.count
+net jogcounts_raw <= hm2_[HOSTMOT2](BOARD).0.encoder.03.count
 net jogcounts_raw => ilowpass.cp.in
 
 net jogcounts_cooked  <= ilowpass.cp.out
