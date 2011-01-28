@@ -11,6 +11,12 @@ P3 is connected to a 7i37 Isolated I/O Board.
 
     The 7i37 has 8 outputs and 16 inputs.
 
+    Many buttons on the control panel connect to inputs on the 7i37 on P3.
+    The buttons are all normally open, momentary close.  The Axis Selector
+    knob and the Step Size knob act the same way.  For each IBIT on the
+    7i37 connected to the control panel in this way, IBITx+ connects to
+    +24 (pin 40), and IBITx- connects to ground through the button.
+
 -------+-------+---------------+----------------------------------
  P3-1  | IO 24 | gpio (in)     | E-stop in
  P3-3  | IO 25 | gpio (in)     | X home switch
