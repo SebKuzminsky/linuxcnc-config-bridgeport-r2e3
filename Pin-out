@@ -9,7 +9,7 @@ P2 is connected to a 7i33 Quad Analog Servo Amp Interface.
 
 P3 is connected to a 7i37 Isolated I/O Board.
 
-    The 7i37 ias 8 outputs and 16 inputs.
+    The 7i37 has 8 outputs and 16 inputs.
 
 -------+-------+---------------+----------------------------------
  P3-1  | IO 24 | gpio (in)     | E-stop in
