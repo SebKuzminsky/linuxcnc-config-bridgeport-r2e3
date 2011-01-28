@@ -52,6 +52,9 @@ net continuous-jog-z-plus  => halui.jog.2.plus
 net continuous-jog-z-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.038.in_not
 net continuous-jog-z-minus => halui.jog.2.minus
 
+net continuous-jog-y-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.039.in_not
+net continuous-jog-y-plus  => halui.jog.1.plus
+
 
 
 

@@ -33,7 +33,7 @@ P3 is connected to a 7i37 Isolated I/O Board.
  P3-25 | IO 36 | gpio (in)     | Spindle Start/Stop
  P3-27 | IO 37 | gpio (in)     | Jog Z+
  P3-29 | IO 38 | gpio (in)     | Jog Z-
- P3-31 | IO 39 | gpio (in)     | (unused)
+ P3-31 | IO 39 | gpio (in)     | Jog Y+ (black/white ethernet cable, blue pair)
 -------+-------+---------------+----------------------------------
  P3-33 | IO 40 | gpio (out)    | E-stop out
  P3-35 | IO 41 | gpio (out)    | Servo amp enable (for all axes)

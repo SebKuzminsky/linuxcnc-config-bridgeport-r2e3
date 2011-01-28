@@ -10,6 +10,7 @@ net ext-estop => control-panel-vcp.led.estop
 
 net continuous-jog-z-plus  => control-panel-vcp.led.jog-z-plus
 net continuous-jog-z-minus => control-panel-vcp.led.jog-z-minus
+net continuous-jog-y-plus  => control-panel-vcp.led.jog-y-plus
 
 net varispeed-slower => control-panel-vcp.led.spindle-slower
 net varispeed-faster => control-panel-vcp.led.spindle-faster
