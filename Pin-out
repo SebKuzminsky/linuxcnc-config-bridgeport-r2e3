@@ -54,3 +54,36 @@ P4 is connected to a 50-pin break-out board.
 -------+------+----------------+----------------------------------
 
 
+P5 is connected to a 7i37COM Isolated I/O Board.
+
+    The 7i37 has 8 outputs and 16 inputs.
+
+-------+-------+---------------+----------------------------------
+ P5-1  | IO 72 | gpio (in)     | Jog Y- (black/white ethernet cable, orange pair)
+ P5-3  | IO 73 | gpio (in)     | Jog X+ (black/white ethernet cable, green pair)
+ P5-5  | IO 74 | gpio (in)     | Jog X- (black/white ethernet cable, brown pair)
+ P5-7  | IO 75 | gpio (in)     | (unused)
+ P5-9  | IO 76 | gpio (in)     | (unused)
+ P5-11 | IO 77 | gpio (in)     | (unused)
+ P5-13 | IO 78 | gpio (in)     | (unused)
+ P5-15 | IO 79 | gpio (in)     | (unused)
+ P5-17 | IO 80 | gpio (in)     | (unused)
+ P5-19 | IO 81 | gpio (in)     | (unused)
+ P5-21 | IO 82 | gpio (in)     | (unused)
+ P5-23 | IO 83 | gpio (in)     | (unused)
+ P5-25 | IO 84 | gpio (in)     | (unused)
+ P5-27 | IO 85 | gpio (in)     | (unused)
+ P5-29 | IO 86 | gpio (in)     | (unused)
+ P5-31 | IO 87 | gpio (in)     | (unused)
+-------+-------+---------------+----------------------------------
+ P5-33 | IO 88 | gpio (out)    | (unused)
+ P5-35 | IO 89 | gpio (out)    | (unused)
+ P5-37 | IO 90 | gpio (out)    | (unused)
+ P5-39 | IO 91 | gpio (out)    | (unused)
+ P5-41 | IO 92 | gpio (out)    | (unused)
+ P5-43 | IO 93 | gpio (out)    | (unused)
+ P5-45 | IO 94 | gpio (out)    | (unused)
+ P5-47 | IO 95 | gpio (out)    | (unused)
+-------+-------+---------------+----------------------------------
+
+
