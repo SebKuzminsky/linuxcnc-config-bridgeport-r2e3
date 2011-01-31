@@ -45,6 +45,8 @@
 # continuous jog
 #
 
+setp halui.jog-speed [TRAJ](MAX_LINEAR_VELOCITY_IPM)
+
 net continuous-jog-z-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.037.in_not
 net continuous-jog-z-plus  => halui.jog.2.plus
 
