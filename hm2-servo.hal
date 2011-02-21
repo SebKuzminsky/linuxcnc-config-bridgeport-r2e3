@@ -109,6 +109,8 @@ setp  hm2_[HOSTMOT2](BOARD).0.encoder.00.scale  [AXIS_0]INPUT_SCALE
 net motor.00.pos-fb hm2_[HOSTMOT2](BOARD).0.encoder.00.position => pid.0.feedback
 net motor.00.pos-fb => axis.0.motor-pos-fb #push copy back to Axis GUI
 
+net motor.00.vel-fb hm2_[HOSTMOT2](BOARD).0.encoder.00.velocity => pid.0.feedback-deriv
+
 # set PID loop gains from inifile
 setp pid.0.Pgain [AXIS_0]P
 setp pid.0.Igain [AXIS_0]I
@@ -150,6 +152,8 @@ setp  hm2_[HOSTMOT2](BOARD).0.encoder.01.scale  [AXIS_1]INPUT_SCALE
 net motor.01.pos-fb hm2_[HOSTMOT2](BOARD).0.encoder.01.position => pid.1.feedback
 net motor.01.pos-fb => axis.1.motor-pos-fb #push copy back to Axis GUI
 
+net motor.01.vel-fb hm2_[HOSTMOT2](BOARD).0.encoder.01.velocity => pid.1.feedback-deriv
+
 # set PID loop gains from inifile
 setp pid.1.Pgain [AXIS_1]P
 setp pid.1.Igain [AXIS_1]I
@@ -190,6 +194,8 @@ setp hm2_[HOSTMOT2](BOARD).0.encoder.02.index-mask-invert 0
 setp  hm2_[HOSTMOT2](BOARD).0.encoder.02.scale  [AXIS_2]INPUT_SCALE
 net motor.02.pos-fb hm2_[HOSTMOT2](BOARD).0.encoder.02.position => pid.2.feedback
 net motor.02.pos-fb => axis.2.motor-pos-fb #push copy back to Axis GUI
+
+net motor.02.vel-fb hm2_[HOSTMOT2](BOARD).0.encoder.02.velocity => pid.2.feedback-deriv
 
 # set PID loop gains from inifile
 setp pid.2.Pgain [AXIS_2]P
