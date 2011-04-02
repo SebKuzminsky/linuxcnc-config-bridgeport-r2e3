@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<pyvcp>
+
+    <labelframe text="Machine State">
+        <font>("Helvetica",16)</font>
+
+        <vbox>
+            <hbox>
+                <label><text>"Manual Mode"</text></label>
+                <led>
+                    <halpin>"machine-is-manual"</halpin>
+                    <size>20</size>
+                </led>
+            </hbox>
+        </vbox>
+    </labelframe>
+
+    <labelframe text="Machine Macros">
+        <font>("Helvetica",16)</font>
+
+        <vbox>
+            <button>
+                <text>"Quill Up"</text>
+                <halpin>"quill-up-button"</halpin>
+            </button>
+
+            <button>
+                <text>"Stow"</text>
+                <halpin>"stow-button"</halpin>
+            </button>
+
+            <button>
+                <text>"Present"</text>
+                <halpin>"present-button"</halpin>
+            </button>
+        </vbox>
+    </labelframe>
+
+</pyvcp>
