@@ -36,4 +36,26 @@
         </vbox>
     </labelframe>
 
+    <labelframe text="Control Panel Jog">
+        <font>("Helvetica",16)</font>
+
+        <vbox>
+            <radiobutton>
+                <choices>["rapid","feed"]</choices>
+                <halpin>"jog-speed-option"</halpin>
+            </radiobutton>
+
+            <scale>
+                <width>"25"</width>
+                <halpin>"jog-speed-value"</halpin>
+                <resolution>0.1</resolution>
+                <orient>HORIZONTAL</orient>
+                <initval>10</initval>
+                <min_>1</min_>
+                <max_>240</max_>
+            </scale>
+
+        </vbox>
+    </labelframe>
+
 </pyvcp>
