@@ -1,0 +1,48 @@
+
+The control panel faceplate is made by the gcode in the bp-control-panel
+project directory.
+
+It's got more buttons than I have input lines for.  Currently connected are:
+
+    * the Axis Selector rotary switch
+
+    * the Jog Increment rotary switch
+
+    * the Spindle On/Off button
+
+    * the Z jog buttons
+
+
+The control panel has a 36-pin Centronix connector with the first 34
+pins connected.  A mating connector connects to wires that carry the
+signals back to the control cabinet.  The pinout of these connectors are:
+
+     Pin | Wire/Color     | Use
+    -----+----------------+-----------------------------------------------
+       1 | R/White-Brown  | Axis Sel Common
+      19 | R/Brown        | Axis Sel X
+       2 | R/White-Green  | Axis Sel Y
+      20 | R/Green        | Axis Sel Z
+       3 | no connection  | Axis Sel 4
+      21 | no connection  | Axis Sel 5
+    -----+----------------+-----------------------------------------------
+       4 | R/White-Blue   | Jog Inc Common
+      22 | R/Blue         | Jog Inc 0.0001
+       5 | R/White-Orange | Jog Inc 0.001
+      23 | R/Orange       | Jog Inc 0.010
+       6 | no connection  | Jog Inc 4
+      24 | no connection  | Jog Inc 5
+    -----+----------------+-----------------------------------------------
+       7 | W/White-Brown  | Ground
+      25 | W/Brown        | Spindle On/Off Return (this pin normally floats, the button
+         |                |     connects it to ground when pushed)
+    -----+----------------+-----------------------------------------------
+       8 | W/White-Green  | Ground
+      26 | W/Green        | Jog Z+ Return (this pin normally floats, the button
+         |                |     connects it to ground when pushed)
+    -----+----------------+-----------------------------------------------
+       9 | W/White-Blue   | Ground
+      27 | W/Blue         | Jog Z- Return (this pin normally floats, the button
+         |                |     connects it to ground when pushed)
+    -----+----------------+-----------------------------------------------
+
