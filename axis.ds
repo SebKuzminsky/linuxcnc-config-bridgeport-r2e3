@@ -1,5 +1,2 @@
-# install devilspie, add it to System->Preferences->Startup Applications
-# symlink this file to $HOME/.devilspie/axis.ds
-
 (if (contains (application_name) "AXIS") (fullscreen))
 
