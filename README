@@ -5,9 +5,9 @@ Kuzminsky in the spring of 2010.
 The Bridgeport has the original Contraves NC400 servo amps, the original
 servos, limit & home switches, and spindle.
 
-It is driven by emc2 via a Mesa AnyIO board (5i20 in this case, though
-any AnyIO board should work), a Mesa 7i33 servo controller, and a Mesa
-7i37 opto-isolated I/O board.
+It is driven by emc2 via a Mesa AnyIO board (5i22 in this case, though
+any AnyIO board should work), a Mesa 7i48 servo controller, and two Mesa
+7i37 opto-isolated I/O boards.
 
 This config is based on the "hm2-servo" config originally written by
 Ted Hyde.  This config differs from Ted's in the following ways:

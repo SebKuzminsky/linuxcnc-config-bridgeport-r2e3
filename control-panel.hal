@@ -56,13 +56,13 @@ net continuous-jog-z-minus => halui.jog.2.minus
 net continuous-jog-y-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.039.in_not
 net continuous-jog-y-plus  => halui.jog.1.plus
 
-net continuous-jog-y-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.072.in_not
+net continuous-jog-y-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.048.in_not
 net continuous-jog-y-minus => halui.jog.1.minus
 
-net continuous-jog-x-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.073.in_not
+net continuous-jog-x-plus  <= hm2_[HOSTMOT2](BOARD).0.gpio.049.in_not
 net continuous-jog-x-plus  => halui.jog.0.plus
 
-net continuous-jog-x-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.074.in_not
+net continuous-jog-x-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.050.in_not
 net continuous-jog-x-minus => halui.jog.0.minus
 
 

@@ -1,9 +1,10 @@
 
-P2 is connected to a 7i33 Quad Analog Servo Amp Interface.
+P2 is connected to a 7i48 Quad Analog Servo Amp Interface.
 
-    Axis 0 is X, Axis 1 is Y, and Axis 2 is Z.
+    Axis 0 is X, Axis 1 is Y, and Axis 2 is Z.  All encoders connect
+    via RS-422.
 
-    The encoder on Axis 3 is the jog wheel.  The pwmgen on Axis 3
+    The encoder on Axis 3 is the jog wheel (TTL).  The pwmgen on Axis 3
     is unused.
 
 
@@ -46,44 +47,43 @@ P3 is connected to a 7i37 Isolated I/O Board.
 -------+-------+---------------+----------------------------------
 
 
-P4 is connected to a 50-pin break-out board.
-
--------+------+----------------+----------------------------------
- P4-1  | IO48 | stepgen 0 step | Varispeed stepper
- P4-3  | IO49 | stepgen 0 dir  | Varispeed stepper
--------+------+----------------+----------------------------------
-
-
-P5 is connected to a 7i37COM Isolated I/O Board.
+P4 is connected to a 7i37COM Isolated I/O Board.
 
     The 7i37 has 8 outputs and 16 inputs.
 
 -------+-------+---------------+----------------------------------
- P5-1  | IO 72 | gpio (in)     | Jog Y- (black/white ethernet cable, orange pair)
- P5-3  | IO 73 | gpio (in)     | Jog X+ (black/white ethernet cable, green pair)
- P5-5  | IO 74 | gpio (in)     | Jog X- (black/white ethernet cable, brown pair)
- P5-7  | IO 75 | gpio (in)     | (unused)
- P5-9  | IO 76 | gpio (in)     | (unused)
- P5-11 | IO 77 | gpio (in)     | (unused)
- P5-13 | IO 78 | gpio (in)     | (unused)
- P5-15 | IO 79 | gpio (in)     | (unused)
- P5-17 | IO 80 | gpio (in)     | (unused)
- P5-19 | IO 81 | gpio (in)     | (unused)
- P5-21 | IO 82 | gpio (in)     | (unused)
- P5-23 | IO 83 | gpio (in)     | (unused)
- P5-25 | IO 84 | gpio (in)     | (unused)
- P5-27 | IO 85 | gpio (in)     | (unused)
- P5-29 | IO 86 | gpio (in)     | (unused)
- P5-31 | IO 87 | gpio (in)     | (unused)
+ P4-1  | IO 48 | gpio (in)     | Jog Y- (black/white ethernet cable, orange pair)
+ P4-3  | IO 49 | gpio (in)     | Jog X+ (black/white ethernet cable, green pair)
+ P4-5  | IO 50 | gpio (in)     | Jog X- (black/white ethernet cable, brown pair)
+ P4-7  | IO 51 | gpio (in)     | (unused)
+ P4-9  | IO 52 | gpio (in)     | (unused)
+ P4-11 | IO 53 | gpio (in)     | (unused)
+ P4-13 | IO 54 | gpio (in)     | (unused)
+ P4-15 | IO 55 | gpio (in)     | (unused)
+ P4-17 | IO 56 | gpio (in)     | (unused)
+ P4-19 | IO 57 | gpio (in)     | (unused)
+ P4-21 | IO 58 | gpio (in)     | (unused)
+ P4-23 | IO 59 | gpio (in)     | (unused)
+ P4-25 | IO 60 | gpio (in)     | (unused)
+ P4-27 | IO 61 | gpio (in)     | (unused)
+ P4-29 | IO 62 | gpio (in)     | (unused)
+ P4-31 | IO 63 | gpio (in)     | (unused)
 -------+-------+---------------+----------------------------------
- P5-33 | IO 88 | gpio (out)    | (unused)
- P5-35 | IO 89 | gpio (out)    | (unused)
- P5-37 | IO 90 | gpio (out)    | (unused)
- P5-39 | IO 91 | gpio (out)    | (unused)
- P5-41 | IO 92 | gpio (out)    | (unused)
- P5-43 | IO 93 | gpio (out)    | (unused)
- P5-45 | IO 94 | gpio (out)    | (unused)
- P5-47 | IO 95 | gpio (out)    | (unused)
+ P4-33 | IO 64 | gpio (out)    | (unused)
+ P4-35 | IO 65 | gpio (out)    | (unused)
+ P4-37 | IO 66 | gpio (out)    | (unused)
+ P4-39 | IO 67 | gpio (out)    | (unused)
+ P4-41 | IO 68 | gpio (out)    | (unused)
+ P4-43 | IO 69 | gpio (out)    | (unused)
+ P4-45 | IO 70 | gpio (out)    | (unused)
+ P4-47 | IO 71 | gpio (out)    | (unused)
 -------+-------+---------------+----------------------------------
 
+
+P5 is connected to a 50-pin break-out board.
+
+-------+-------+----------------+----------------------------------
+ P5-1  | IO 72 | stepgen 0 step | Varispeed stepper (must be open drain for the Lin stepper amp)
+ P5-3  | IO 73 | stepgen 0 dir  | Varispeed stepper (must be open drain for the Lin stepper amp)
+-------+-------+----------------+----------------------------------
 
