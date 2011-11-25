@@ -2,17 +2,6 @@
 The control panel faceplate is made by the gcode in the bp-control-panel
 project directory.
 
-It's got more buttons than I have input lines for.  Currently connected are:
-
-    * the Axis Selector rotary switch
-
-    * the Jog Increment rotary switch
-
-    * the Spindle On/Off button
-
-    * the Z jog buttons
-
-
 The control panel has a 36-pin Centronix connector with the first 34
 pins connected.  A mating connector connects to wires that carry the
 signals back to the control cabinet.  The pinout of these connectors are:
@@ -45,4 +34,6 @@ signals back to the control cabinet.  The pinout of these connectors are:
       27 | W/Blue         | Jog Z- Return (this pin normally floats, the button
          |                |     connects it to ground when pushed)
     -----+----------------+-----------------------------------------------
+
+FIXME: hooked up all the buttons, but what wires?
 
