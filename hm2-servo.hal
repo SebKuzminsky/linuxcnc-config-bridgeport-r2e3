@@ -123,7 +123,7 @@ setp pid.0.deadband [AXIS_0]DEADBAND
 setp pid.0.maxoutput [AXIS_0]MAX_OUTPUT
 
 # position command signals
-setp hm2_[HOSTMOT2](BOARD).0.pwmgen.00.output-type 1 #pwm on pin1, dir on pin2
+setp hm2_[HOSTMOT2](BOARD).0.pwmgen.00.output-type 2 # Up-PWM on pin1, Down-PWM on pin2
 setp hm2_[HOSTMOT2](BOARD).0.pwmgen.00.scale  [AXIS_0]OUTPUT_SCALE
 
 net emcmot.00.pos-cmd axis.0.motor-pos-cmd => pid.0.command
@@ -166,7 +166,7 @@ setp pid.1.deadband [AXIS_1]DEADBAND
 setp pid.1.maxoutput [AXIS_1]MAX_OUTPUT
 
 # position command signals
-setp hm2_[HOSTMOT2](BOARD).0.pwmgen.01.output-type 1 #pwm on pin1, dir on pin2
+setp hm2_[HOSTMOT2](BOARD).0.pwmgen.01.output-type 2 # Up-PWM on pin1, Down-PWM on pin2
 setp hm2_[HOSTMOT2](BOARD).0.pwmgen.01.scale [AXIS_1]OUTPUT_SCALE
 
 net emcmot.01.pos-cmd axis.1.motor-pos-cmd => pid.1.command
@@ -209,7 +209,7 @@ setp pid.2.deadband [AXIS_2]DEADBAND
 setp pid.2.maxoutput [AXIS_2]MAX_OUTPUT
 
 # position command signals
-setp hm2_[HOSTMOT2](BOARD).0.pwmgen.02.output-type 1 #pwm on pin1, dir on pin2
+setp hm2_[HOSTMOT2](BOARD).0.pwmgen.02.output-type 2 # Up-PWM on pin1, Down-PWM on pin2
 setp hm2_[HOSTMOT2](BOARD).0.pwmgen.02.scale [AXIS_2]OUTPUT_SCALE
 
 net emcmot.02.pos-cmd axis.2.motor-pos-cmd => pid.2.command
