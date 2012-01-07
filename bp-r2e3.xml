@@ -52,7 +52,7 @@
                 <orient>HORIZONTAL</orient>
                 <initval>10</initval>
                 <min_>1</min_>
-                <max_>240</max_>
+                <max_>40</max_>
             </scale>
 
         </vbox>
