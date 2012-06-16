@@ -27,3 +27,9 @@ loadrt oneshot count=1
 # from shuttlexpress.hal: loadrt and2 names=and2.sxp-x-pos,and2.sxp-x-neg,and2.sxp-y-pos,and2.sxp-y-neg,and2.sxp-z-pos,and2.sxp-z-neg
 loadrt and2 names=and2.0,and2.1,and2.2,and2.3,and2.4,and2.5
 
+
+loadrt or2 names=or2.halui.mdi.quill-up
+
+
+loadrt multiclick names=multiclick.cp-up
+

@@ -66,6 +66,22 @@ net continuous-jog-x-minus <= hm2_[HOSTMOT2](BOARD).0.gpio.050.in_not
 net continuous-jog-x-minus => halui.jog.0.minus
 
 
+#
+# double-click +Z for quill-up
+#
+
+setp multiclick.cp-up.max-hold-ns    250000000
+setp multiclick.cp-up.max-space-ns   250000000
+setp multiclick.cp-up.output-hold-ns 100000000
+
+net continuous-jog-z-plus => multiclick.cp-up.in
+
+net jog-up-double-click <= multiclick.cp-up.double-click
+net jog-up-double-click => or2.halui.mdi.quill-up.in0
+
+addf multiclick.cp-up servo-thread
+
+
 
 
 #
