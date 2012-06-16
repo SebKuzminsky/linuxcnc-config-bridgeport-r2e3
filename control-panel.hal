@@ -77,10 +77,10 @@ setp multiclick.cp-up.output-hold-ns 100000000
 
 net continuous-jog-z-plus => multiclick.cp-up.in
 
-net jog-up-double-click <= multiclick.cp-up.double-click
+net jog-up-double-click <= multiclick.cp-up.double-click-only
 net jog-up-double-click => or2.halui.mdi.quill-up.in0
 
-net jog-up-triple-click <= multiclick.cp-up.triple-click
+net jog-up-triple-click <= multiclick.cp-up.triple-click-only
 net jog-up-triple-click => or2.halui.mdi.present.in0
 
 addf multiclick.cp-up servo-thread
