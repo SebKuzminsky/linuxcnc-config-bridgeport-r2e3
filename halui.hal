@@ -1,7 +1,14 @@
 
-# either one of two bit nets can trigger halui MDI quill-up
+# either one of two bit nets can trigger halui MDI "quill-up"
 net halui.mdi.quill-up <= or2.halui.mdi.quill-up.out
 net halui.mdi.quill-up => halui.mdi-command-02
 
 addf or2.halui.mdi.quill-up servo-thread
+
+
+# either one of two bit nets can trigger halui MDI "present"
+net halui.mdi.present <= or2.halui.mdi.present.out
+net halui.mdi.present => halui.mdi-command-01
+
+addf or2.halui.mdi.present servo-thread
 

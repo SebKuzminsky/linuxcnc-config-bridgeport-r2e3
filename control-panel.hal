@@ -67,7 +67,8 @@ net continuous-jog-x-minus => halui.jog.0.minus
 
 
 #
-# double-click +Z for quill-up
+# double-click +Z for "quill up"
+# triple-click +Z for "presentation position"
 #
 
 setp multiclick.cp-up.max-hold-ns    250000000
@@ -78,6 +79,9 @@ net continuous-jog-z-plus => multiclick.cp-up.in
 
 net jog-up-double-click <= multiclick.cp-up.double-click
 net jog-up-double-click => or2.halui.mdi.quill-up.in0
+
+net jog-up-triple-click <= multiclick.cp-up.triple-click
+net jog-up-triple-click => or2.halui.mdi.present.in0
 
 addf multiclick.cp-up servo-thread
 
