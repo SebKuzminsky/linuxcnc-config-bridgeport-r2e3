@@ -12,3 +12,10 @@ net halui.mdi.present => halui.mdi-command-01
 
 addf or2.halui.mdi.present servo-thread
 
+
+# either one of two bit nets can trigger halui MDI "stow"
+net halui.mdi.stow <= or2.halui.mdi.stow.out
+net halui.mdi.stow => halui.mdi-command-00
+
+addf or2.halui.mdi.stow servo-thread
+

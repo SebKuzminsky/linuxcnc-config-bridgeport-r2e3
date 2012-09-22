@@ -1,7 +1,7 @@
 
 net machine-is-manual halui.mode.is-manual => pyvcp.machine-is-manual
 
-net stow-button     pyvcp.stow-button     => halui.mdi-command-00
+net stow-button     pyvcp.stow-button     => or2.halui.mdi.stow.in1
 net present-button  pyvcp.present-button  => or2.halui.mdi.present.in1
 net quill-up-button pyvcp.quill-up-button => or2.halui.mdi.quill-up.in1
 

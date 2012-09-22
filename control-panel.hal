@@ -83,6 +83,9 @@ net jog-up-double-click => or2.halui.mdi.quill-up.in0
 net jog-up-triple-click <= multiclick.cp-up.triple-click-only
 net jog-up-triple-click => or2.halui.mdi.present.in0
 
+net jog-up-quadruple-click <= multiclick.cp-up.quadruple-click-only
+net jog-up-quadruple-click => or2.halui.mdi.stow.in0
+
 addf multiclick.cp-up servo-thread
 
 
