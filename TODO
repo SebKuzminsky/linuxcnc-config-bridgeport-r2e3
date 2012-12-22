@@ -10,17 +10,7 @@ sum2.2 loaded but not used anywhere
 
 control panel:
 
-    Spindle:
-
-        If you push the spindle On/Off button on the control panel when the
-        spindle is running, turn the spindle off.
-
-        If you push the Spindle On/Off button when the spindle is off, consult
-        the Spindle Faster/Slower knob to select cw/ccw spindle rotation.
-
-    Use the jog axis selector to route the cont-jog-plus/cont-jog-minus
-    buttons to the correct axis?
-
     Use another setting on the jog axis selector rotary to route the
-    jogwheel to continuous-jog-speed adjust?
+    jogwheel to continuous-jog-speed adjust?  and spindle speed, and
+    feed override
 
