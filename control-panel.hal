@@ -10,7 +10,7 @@
 #     gpio 28 & 29 (varispeed spindle faster/slower switch input)
 #
 # 
-# There control panel has these features:
+# The control panel has these features:
 # 
 #     * a latching E-stop button
 #     * 6 momentary push-buttons that do continuous jogs on all three axes
