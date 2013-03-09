@@ -31,5 +31,6 @@ loadrt and2 names=and2.0,and2.1,and2.2,and2.3,and2.4,and2.5
 loadrt or2 names=or2.halui.mdi.quill-up,or2.halui.mdi.present,or2.halui.mdi.stow
 
 
+loadrt debounce cfg=1
 loadrt multiclick names=multiclick.cp-up
 

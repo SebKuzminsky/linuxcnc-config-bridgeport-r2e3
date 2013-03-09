@@ -71,11 +71,17 @@ net continuous-jog-x-minus => halui.jog.0.minus
 # triple-click +Z for "presentation position"
 #
 
+setp debounce.0.delay 3
+
 setp multiclick.cp-up.max-hold-ns    250000000
 setp multiclick.cp-up.max-space-ns   250000000
 setp multiclick.cp-up.output-hold-ns 100000000
 
-net continuous-jog-z-plus => multiclick.cp-up.in
+
+net continuous-jog-z-plus => debounce.0.0.in
+
+net debounced-continuous-jog-z-plus <= debounce.0.0.out
+net debounced-continuous-jog-z-plus => multiclick.cp-up.in
 
 net jog-up-double-click <= multiclick.cp-up.double-click-only
 net jog-up-double-click => or2.halui.mdi.quill-up.in0
@@ -86,6 +92,9 @@ net jog-up-triple-click => or2.halui.mdi.present.in0
 net jog-up-quadruple-click <= multiclick.cp-up.quadruple-click-only
 net jog-up-quadruple-click => or2.halui.mdi.stow.in0
 
+
+# debounce before feeding the signal to multiclick
+addf debounce.0 servo-thread
 addf multiclick.cp-up servo-thread
 
 
