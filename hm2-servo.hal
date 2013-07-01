@@ -301,7 +301,7 @@ net emcmot.00.enable => hm2_[HOSTMOT2](BOARD).0.gpio.041.out
 # spindle motor speed control
 #
 
-loadusr -W gs2_vfd --bits 8 --parity even --stop 1 --rate 38400 --target 1
+loadusr -W gs2_vfd --rate 38400 --parity even --bits 8 --stop 1 --target 1
 
 setp gs2_vfd.speed-command 1700
 
