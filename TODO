@@ -7,6 +7,10 @@ tool change stuff in both hm2-servo.hal and manual-tool-change.hal
 
 sum2.2 loaded but not used anywhere
 
+add home switches to the pyvcp panel
+
+Un-bend the Z home/limit switch mounting plate...
+
 
 control panel:
 
