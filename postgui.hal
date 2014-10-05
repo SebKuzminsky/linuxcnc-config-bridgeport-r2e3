@@ -12,3 +12,4 @@ net jog-is-feed      pyvcp.jog-speed-option.feed => mux2.0.sel
 net actual-jog-speed mux2.0.out                  => halui.jog-speed
 addf mux2.0 servo-thread
 
+net commanded-spindle-speed => pyvcp.commanded-spindle-speed

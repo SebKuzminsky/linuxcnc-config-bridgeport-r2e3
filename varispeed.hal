@@ -54,3 +54,5 @@ net varispeed_delta mux4.0.out => hm2_[HOSTMOT2](BOARD).0.stepgen.00.velocity-cm
 
 addf mux4.0 servo-thread
 
+net commanded-spindle-speed <= motion.spindle-speed-out
+

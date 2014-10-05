@@ -58,4 +58,14 @@
         </vbox>
     </labelframe>
 
+    <labelframe text="Commanded Spindle Speed">
+        <font>("Helvetica",16)</font>
+
+        <number>
+            <halpin>"commanded-spindle-speed"</halpin>
+            <font>("Helvetica",24)</font>
+            <format>"5f"</format>
+        </number>
+    </labelframe>
+
 </pyvcp>
