@@ -77,8 +77,7 @@ addf pid.2.do-pid-calcs                    servo-thread
 addf classicladder.0.refresh               servo-thread
 
 addf hm2_[HOSTMOT2](BOARD).0.write         servo-thread
-addf hm2_[HOSTMOT2](BOARD).0.pet_watchdog  servo-thread
-       
+
 
 # ######################################################
 # Axis-of-motion Specific Configs (not the GUI)
