@@ -64,7 +64,7 @@
         <number>
             <halpin>"commanded-spindle-speed"</halpin>
             <font>("Helvetica",24)</font>
-            <format>"5f"</format>
+            <format>"5d"</format>
         </number>
     </labelframe>
 
